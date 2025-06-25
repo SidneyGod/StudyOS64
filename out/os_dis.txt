@@ -1,0 +1,133 @@
+
+out/os.elf:     file format elf32-i386
+out/os.elf
+architecture: i386, flags 0x00000112:
+EXEC_P, HAS_SYMS, D_PAGED
+start address 0x00007c00
+
+Program Header:
+    LOAD off    0x00000000 vaddr 0x00007000 paddr 0x00007000 align 2**12
+         filesz 0x00000e00 memsz 0x00000e00 flags r-x
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000200  00007c00  00007c00  00000c00  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .debug_aranges 00000020  00000000  00000000  00000e00  2**3
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  2 .debug_info   00000025  00000000  00000000  00000e20  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  3 .debug_abbrev 00000014  00000000  00000000  00000e45  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  4 .debug_line   00000065  00000000  00000000  00000e59  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  5 .debug_str    0000002e  00000000  00000000  00000ebe  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  6 .debug_line_str 00000022  00000000  00000000  00000eec  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+SYMBOL TABLE:
+00000000 l    df *ABS*	00000000 boot.o
+00007c40 l       .text	00000000 StartBootMsg
+0000001e l       *ABS*	00000000 StartBootMsgLen
+00007c3c l       .text	00000000 halt
+00007c00 g       .text	00000000 _start
+00008e00 g       .text	00000000 __bss_start
+00008e00 g       .text	00000000 _edata
+00008e00 g       .text	00000000 _end
+
+
+
+Disassembly of section .text:
+
+00007c00 <_start>:
+
+# 代码段地址开始
+.section .text
+
+_start:
+    xor %ax, %ax  # ax = 0
+    7c00:	31 c0                	xor    %eax,%eax
+    mov %ax, %ds
+    7c02:	8e d8                	mov    %eax,%ds
+    mov %ax, %es
+    7c04:	8e c0                	mov    %eax,%es
+    mov %ax, %ss
+    7c06:	8e d0                	mov    %eax,%ss
+
+    # 设置栈指针 0x7c00下方
+    mov $_start, %sp
+    7c08:	bc 00 7c b8 03       	mov    $0x3b87c00,%esp
+    
+    # 设置显示模式为80x25文本模式
+    mov $0x0003, %ax
+    7c0d:	00 cd                	add    %cl,%ch
+    int $0x10
+    7c0f:	10 b8 00 06 bb 00    	adc    %bh,0xbb0600(%eax)
+
+    # clear screen
+    mov $0x0600, %ax
+    mov $0x0700, %bx
+    7c15:	07                   	pop    %es
+    xor %cx, %cx
+    7c16:	31 c9                	xor    %ecx,%ecx
+    mov $0x184f, %dx
+    7c18:	ba 4f 18 cd 10       	mov    $0x10cd184f,%edx
+    int $0x10
+
+    # set focus
+    mov $0x0200, %ax
+    7c1d:	b8 00 02 31 db       	mov    $0xdb310200,%eax
+    xor %bx, %bx
+    xor %dx, %dx
+    7c22:	31 d2                	xor    %edx,%edx
+    int $0x10
+    7c24:	cd 10                	int    $0x10
+
+    # display msg on screen
+    mov $0x1301, %ax
+    7c26:	b8 01 13 bb 07       	mov    $0x7bb1301,%eax
+    mov $0x0007, %bx
+    7c2b:	00 bd 40 7c b9 1e    	add    %bh,0x1eb97c40(%ebp)
+    mov $StartBootMsg, %bp  # 放入字符串
+    mov $StartBootMsgLen, %cx  # 字符串长度
+    7c31:	00 31                	add    %dh,(%ecx)
+    xor %dx, %dx
+    7c33:	d2 cd                	ror    %cl,%ch
+    int $0x10
+    7c35:	10 30                	adc    %dh,(%eax)
+
+    # reset floppy
+    xor %ah, %ah
+    7c37:	e4 30                	in     $0x30,%al
+    xor %dl, %dl
+    7c39:	d2 cd                	ror    %cl,%ch
+    int $0x13    # 重置磁盘
+    7c3b:	13                   	.byte 0x13
+
+00007c3c <halt>:
+
+halt:
+    cli       # 禁用中断
+    7c3c:	fa                   	cli
+    hlt       # 暂停CPU
+    7c3d:	f4                   	hlt
+    jmp halt  # 无限循环
+    7c3e:	eb fc                	jmp    7c3c <halt>
+
+00007c40 <StartBootMsg>:
+    7c40:	53                   	push   %ebx
+    7c41:	69 64 6e 65 79 20 44 	imul   $0x49442079,0x65(%esi,%ebp,2),%esp
+    7c48:	49 
+    7c49:	4e                   	dec    %esi
+    7c4a:	47                   	inc    %edi
+    7c4b:	2c 20                	sub    $0x20,%al
+    7c4d:	53                   	push   %ebx
+    7c4e:	74 61                	je     7cb1 <StartBootMsg+0x71>
+    7c50:	72 74                	jb     7cc6 <StartBootMsg+0x86>
+    7c52:	20 42 6f             	and    %al,0x6f(%edx)
+    7c55:	6f                   	outsl  %ds:(%esi),(%dx)
+    7c56:	74 2e                	je     7c86 <StartBootMsg+0x46>
+    7c58:	2e 2e 2e 2e 2e 00 00 	cs cs cs cs add %al,%cs:(%eax)
+	...
+    7dfb:	00 00                	add    %al,(%eax)
+    7dfd:	00 55 aa             	add    %dl,-0x56(%ebp)

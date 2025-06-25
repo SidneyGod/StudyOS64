@@ -1,0 +1,41 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "program": "${workspaceRoot}/out/os.elf",
+            "MIMode": "gdb",
+            "miDebuggerPath": "x86_64-elf-gdb",
+            "miDebuggerServerAddress": "127.0.0.1:1234",
+            "targetArchitecture": "x86_64",
+            "stopAtConnect": true,
+            "stopAtEntry": true,
+            "externalConsole": true,
+            // 启动gdb之前 启动qemu
+            "preLaunchTask": "start qemu",
+            "setupCommands": [
+                {"text": "-enable-pretty-printing"},
+                {"text": "-gdb-set disassembly-flavor intel"},
+                {
+                    // 设置体系结构 i386:x86-64:intel i8086
+                    "text": "-gdb-set arch i386:x86-64:intel"
+                }
+            ],
+            // gdb连接后的设置
+            "postRemoteConnectCommands": [
+                {
+                    "description": "load boot symbol",
+                    "text": "-file-symbol-file ./out/os.elf"
+                },
+                // 暂停在0x7c00处
+                {"text": "-exec-until *0x7c00"}
+            ]
+        }
+    ]
+}
