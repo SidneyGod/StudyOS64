@@ -1,133 +1,631 @@
 
-out/os.elf:     file format elf32-i386
+out/os.elf:     file format elf64-x86-64
 out/os.elf
-architecture: i386, flags 0x00000112:
+architecture: i386:x86-64, flags 0x00000112:
 EXEC_P, HAS_SYMS, D_PAGED
-start address 0x00007c00
+start address 0x0000000000007c00
 
 Program Header:
-    LOAD off    0x00000000 vaddr 0x00007000 paddr 0x00007000 align 2**12
-         filesz 0x00000e00 memsz 0x00000e00 flags r-x
+    LOAD off    0x0000000000000000 vaddr 0x0000000000007000 paddr 0x0000000000007000 align 2**12
+         filesz 0x0000000000000e00 memsz 0x0000000000000e00 flags r-x
 
 Sections:
-Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000200  00007c00  00007c00  00000c00  2**0
+Idx Name          Size      VMA               LMA               File off  Algn
+  0 .text         00000200  0000000000007c00  0000000000007c00  00000c00  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .debug_aranges 00000020  00000000  00000000  00000e00  2**3
+  1 .debug_aranges 00000030  0000000000000000  0000000000000000  00000e00  2**4
                   CONTENTS, READONLY, DEBUGGING, OCTETS
-  2 .debug_info   00000025  00000000  00000000  00000e20  2**0
+  2 .debug_info   00000029  0000000000000000  0000000000000000  00000e30  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
-  3 .debug_abbrev 00000014  00000000  00000000  00000e45  2**0
+  3 .debug_abbrev 00000014  0000000000000000  0000000000000000  00000e59  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
-  4 .debug_line   00000065  00000000  00000000  00000e59  2**0
+  4 .debug_line   000000eb  0000000000000000  0000000000000000  00000e6d  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
-  5 .debug_str    0000002e  00000000  00000000  00000ebe  2**0
+  5 .debug_str    0000002e  0000000000000000  0000000000000000  00000f58  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
-  6 .debug_line_str 00000022  00000000  00000000  00000eec  2**0
+  6 .debug_line_str 00000022  0000000000000000  0000000000000000  00000f86  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 SYMBOL TABLE:
-00000000 l    df *ABS*	00000000 boot.o
-00007c40 l       .text	00000000 StartBootMsg
-0000001e l       *ABS*	00000000 StartBootMsgLen
-00007c3c l       .text	00000000 halt
-00007c00 g       .text	00000000 _start
-00008e00 g       .text	00000000 __bss_start
-00008e00 g       .text	00000000 _edata
-00008e00 g       .text	00000000 _end
+0000000000000000 l    df *ABS*	0000000000000000 boot.o
+0000000000007c00 l       *ABS*	0000000000000000 BaseOfStack
+0000000000001000 l       *ABS*	0000000000000000 BaseOfLoader
+0000000000000000 l       *ABS*	0000000000000000 OffsetOfLoader
+000000000000000e l       *ABS*	0000000000000000 RootDirSectors
+0000000000000013 l       *ABS*	0000000000000000 SectorNumOfRootDirStart
+0000000000000001 l       *ABS*	0000000000000000 SectorNumOfFAT1Start
+0000000000000011 l       *ABS*	0000000000000000 SectorBalance
+0000000000007c41 l       .text	0000000000000000 Label_Start
+0000000000007c03 l       .text	0000000000000000 BS_OEMName
+0000000000007c0c l       .text	0000000000000000 BPB_BytesPerSec
+0000000000007c0e l       .text	0000000000000000 BPB_SecPerClus
+0000000000007c0f l       .text	0000000000000000 BPB_RsvdSecCnt
+0000000000007c11 l       .text	0000000000000000 BPB_NumFATs
+0000000000007c12 l       .text	0000000000000000 BPB_RootEntCnt
+0000000000007c14 l       .text	0000000000000000 BPB_TotSec16
+0000000000007c16 l       .text	0000000000000000 BPB_Media
+0000000000007c17 l       .text	0000000000000000 BPB_FATSz16
+0000000000007c19 l       .text	0000000000000000 BPB_SecPerTrk
+0000000000007c1b l       .text	0000000000000000 BPB_NumHeads
+0000000000007c1d l       .text	0000000000000000 BPB_HiddSec
+0000000000007c21 l       .text	0000000000000000 BPB_TotSec32
+0000000000007c25 l       .text	0000000000000000 BS_DrvNum
+0000000000007c26 l       .text	0000000000000000 BS_Reserved1
+0000000000007c27 l       .text	0000000000000000 BS_BootSig
+0000000000007c28 l       .text	0000000000000000 BS_VolID
+0000000000007c2c l       .text	0000000000000000 BS_VolLab
+0000000000007c38 l       .text	0000000000000000 BS_FileSysType
+0000000000007db3 l       .text	0000000000000000 StartBootMsg
+000000000000001b l       *ABS*	0000000000000000 StartBootMsgLen
+0000000000007db0 l       .text	0000000000000000 SectorNo
+0000000000007c83 l       .text	0000000000000000 Label_SearchInRootDirBegin
+0000000000007dae l       .text	0000000000000000 RootDirSizeForLoop
+0000000000007cd3 l       .text	0000000000000000 Label_NoLoader
+0000000000007d32 l       .text	0000000000000000 Func_ReadOneSector
+0000000000007de5 l       .text	0000000000000000 LoaderFileName
+0000000000007ca8 l       .text	0000000000000000 Label_SearchForLoaderBin
+0000000000007ccd l       .text	0000000000000000 Label_GotoNextSectorInRootDir
+0000000000007cb1 l       .text	0000000000000000 Label_CmpFileName
+0000000000007ce8 l       .text	0000000000000000 Label_FileNameFound
+0000000000007cbf l       .text	0000000000000000 Label_GoOn
+0000000000007cc2 l       .text	0000000000000000 Label_Different
+0000000000007dce l       .text	0000000000000000 NoLoaderMsg
+0000000000000017 l       *ABS*	0000000000000000 NoLoaderMsgLen
+0000000000007ce4 l       .text	0000000000000000 halt
+0000000000007d04 l       .text	0000000000000000 Label_GoOnLoadingFile
+0000000000007d62 l       .text	0000000000000000 Func_GetFatEntry
+0000000000007d2d l       .text	0000000000000000 Label_FileLoaded
+0000000000007d54 l       .text	0000000000000000 Label_GoOnReading
+0000000000007db2 l       .text	0000000000000000 Odd
+0000000000007d84 l       .text	0000000000000000 Label_Even
+0000000000007da8 l       .text	0000000000000000 Label_Even2
+0000000000007c00 g       .text	0000000000000000 _start
+0000000000008000 g       .text	0000000000000000 __bss_start
+0000000000008000 g       .text	0000000000000000 _edata
+0000000000008000 g       .text	0000000000000000 _end
 
 
 
 Disassembly of section .text:
 
-00007c00 <_start>:
+0000000000007c00 <_start>:
+.equ SectorNumOfFAT1Start, 1  # FAT1表起始扇区号
+.equ SectorBalance, 17  # 数据区起始扇区偏移量 保留扇区 + FAT1 + FAT2 - 2(数据区从2开始)
 
-# 代码段地址开始
-.section .text
-
+/* 引导程序入口 */
 _start:
-    xor %ax, %ax  # ax = 0
-    7c00:	31 c0                	xor    %eax,%eax
-    mov %ax, %ds
-    7c02:	8e d8                	mov    %eax,%ds
-    mov %ax, %es
-    7c04:	8e c0                	mov    %eax,%es
-    mov %ax, %ss
-    7c06:	8e d0                	mov    %eax,%ss
+    jmp Label_Start                     # 跳过文件系统头区域
+    7c00:	eb 3f                	jmp    7c41 <Label_Start>
+    nop                                 # 填充字节(FAT12头要求)
+    7c02:	90                   	nop
 
-    # 设置栈指针 0x7c00下方
-    mov $_start, %sp
-    7c08:	bc 00 7c b8 03       	mov    $0x3b87c00,%esp
-    
-    # 设置显示模式为80x25文本模式
-    mov $0x0003, %ax
-    7c0d:	00 cd                	add    %cl,%ch
+0000000000007c03 <BS_OEMName>:
+    7c03:	4d 79 20             	rex.WRB jns 7c26 <BS_Reserved1>
+    7c06:	20 42 6f             	and    %al,0x6f(%rdx)
+    7c09:	6f                   	outsl  %ds:(%rsi),(%dx)
+    7c0a:	74 00                	je     7c0c <BPB_BytesPerSec>
+
+0000000000007c0c <BPB_BytesPerSec>:
+    7c0c:	00 02                	add    %al,(%rdx)
+
+0000000000007c0e <BPB_SecPerClus>:
+    7c0e:	01                   	.byte 0x1
+
+0000000000007c0f <BPB_RsvdSecCnt>:
+    7c0f:	01 00                	add    %eax,(%rax)
+
+0000000000007c11 <BPB_NumFATs>:
+    7c11:	02                   	.byte 0x2
+
+0000000000007c12 <BPB_RootEntCnt>:
+    7c12:	e0 00                	loopne 7c14 <BPB_TotSec16>
+
+0000000000007c14 <BPB_TotSec16>:
+    7c14:	40                   	rex
+    7c15:	0b                   	.byte 0xb
+
+0000000000007c16 <BPB_Media>:
+    7c16:	f0                   	lock
+
+0000000000007c17 <BPB_FATSz16>:
+    7c17:	09 00                	or     %eax,(%rax)
+
+0000000000007c19 <BPB_SecPerTrk>:
+    7c19:	12 00                	adc    (%rax),%al
+
+0000000000007c1b <BPB_NumHeads>:
+    7c1b:	02 00                	add    (%rax),%al
+
+0000000000007c1d <BPB_HiddSec>:
+    7c1d:	00 00                	add    %al,(%rax)
+	...
+
+0000000000007c21 <BPB_TotSec32>:
+    7c21:	00 00                	add    %al,(%rax)
+	...
+
+0000000000007c25 <BS_DrvNum>:
+	...
+
+0000000000007c26 <BS_Reserved1>:
+	...
+
+0000000000007c27 <BS_BootSig>:
+    7c27:	29                   	.byte 0x29
+
+0000000000007c28 <BS_VolID>:
+    7c28:	00 00                	add    %al,(%rax)
+	...
+
+0000000000007c2c <BS_VolLab>:
+    7c2c:	62 6f 6f 74 20       	(bad)
+    7c31:	6c                   	insb   (%dx),%es:(%rdi)
+    7c32:	6f                   	outsl  %ds:(%rsi),(%dx)
+    7c33:	61                   	(bad)
+    7c34:	64 65 72 00          	fs gs jb 7c38 <BS_FileSysType>
+
+0000000000007c38 <BS_FileSysType>:
+    7c38:	46                   	rex.RX
+    7c39:	41 54                	push   %r12
+    7c3b:	31 32                	xor    %esi,(%rdx)
+    7c3d:	20 20                	and    %ah,(%rax)
+    7c3f:	20 00                	and    %al,(%rax)
+
+0000000000007c41 <Label_Start>:
+BS_VolLab:       .string "boot loader"  # 11字节卷标
+BS_FileSysType:  .string "FAT12   "     # 8字节文件系统类型
+
+/* 主程序入口 */
+Label_Start:
+    movw %cs, %ax  # 最开始cs是等于0的
+    7c41:	8c c8                	mov    %cs,%eax
+    movw %ax, %ds
+    7c43:	8e d8                	mov    %eax,%ds
+    movw %ax, %es
+    7c45:	8e c0                	mov    %eax,%es
+    movw %ax, %ss
+    7c47:	8e d0                	mov    %eax,%ss
+    movw $BaseOfStack, %sp  # 栈指针指向栈底 SP=0x7c00
+    7c49:	bc 00 7c b8 03       	mov    $0x3b87c00,%esp
+
+    /* 设置显示模式为 80x25 16色文本模式 */
+    movw $0x0003, %ax
+    7c4e:	00 cd                	add    %cl,%ch
     int $0x10
-    7c0f:	10 b8 00 06 bb 00    	adc    %bh,0xbb0600(%eax)
-
-    # clear screen
-    mov $0x0600, %ax
-    mov $0x0700, %bx
-    7c15:	07                   	pop    %es
-    xor %cx, %cx
-    7c16:	31 c9                	xor    %ecx,%ecx
-    mov $0x184f, %dx
-    7c18:	ba 4f 18 cd 10       	mov    $0x10cd184f,%edx
+    7c50:	10 b8 00 06 bb 00    	adc    %bh,0xbb0600(%rax)
+    /* 清屏 */
+    movw $0x0600, %ax  # AH=06h(滚动窗口), AL=00h(整个窗口)
+    movw $0x0700, %bx  # BH=07h(属性：黑底白字)
+    7c56:	07                   	(bad)
+    xorw %cx, %cx      # CH=0, CL=0(左上角 行=0 列=0)
+    7c57:	31 c9                	xor    %ecx,%ecx
+    movw $0x184f, %dx  # DH=18h(24行), DL=4Fh(79列)
+    7c59:	ba 4f 18 cd 10       	mov    $0x10cd184f,%edx
     int $0x10
-
-    # set focus
-    mov $0x0200, %ax
-    7c1d:	b8 00 02 31 db       	mov    $0xdb310200,%eax
+    /* 设置光标位置 */
+    movw $0x0200, %ax
+    7c5e:	b8 00 02 31 db       	mov    $0xdb310200,%eax
     xor %bx, %bx
     xor %dx, %dx
-    7c22:	31 d2                	xor    %edx,%edx
+    7c63:	31 d2                	xor    %edx,%edx
     int $0x10
-    7c24:	cd 10                	int    $0x10
-
-    # display msg on screen
-    mov $0x1301, %ax
-    7c26:	b8 01 13 bb 07       	mov    $0x7bb1301,%eax
-    mov $0x0007, %bx
-    7c2b:	00 bd 40 7c b9 1e    	add    %bh,0x1eb97c40(%ebp)
-    mov $StartBootMsg, %bp  # 放入字符串
-    mov $StartBootMsgLen, %cx  # 字符串长度
-    7c31:	00 31                	add    %dh,(%ecx)
-    xor %dx, %dx
-    7c33:	d2 cd                	ror    %cl,%ch
+    7c65:	cd 10                	int    $0x10
+    /* 显示启动消息 */
+    movw $0x1301, %ax           # AH=13h(写字符串), AL=01h(光标跟随移动)
+    7c67:	b8 01 13 bb 0f       	mov    $0xfbb1301,%eax
+    movw $0x000f, %bx           # BH=0(页号), BL=0Fh(黑底白字)
+    7c6c:	00 bd b3 7d b9 1b    	add    %bh,0x1bb97db3(%rbp)
+    movw $StartBootMsg, %bp     # 放入字符串
+    movw $StartBootMsgLen, %cx  # 字符串长度
+    7c72:	00 31                	add    %dh,(%rcx)
+    xorw %dx, %dx               # DH=0(行) DL=0(列)
+    7c74:	d2 cd                	ror    %cl,%ch
     int $0x10
-    7c35:	10 30                	adc    %dh,(%eax)
+    7c76:	10 31                	adc    %dh,(%rcx)
+    /* 重置磁盘系统 */
+    xorw %ax, %ax
+    7c78:	c0 30 d2             	shlb   $0xd2,(%rax)
+    xorb %dl, %dl
+    int $0x13
+    7c7b:	cd 13                	int    $0x13
 
-    # reset floppy
-    xor %ah, %ah
-    7c37:	e4 30                	in     $0x30,%al
-    xor %dl, %dl
-    7c39:	d2 cd                	ror    %cl,%ch
-    int $0x13    # 重置磁盘
-    7c3b:	13                   	.byte 0x13
 
-00007c3c <halt>:
+/* 查找loader.bin文件 */
+    movw $SectorNumOfRootDirStart, SectorNo  # 根目录从第19个扇区开始
+    7c7d:	c7 06 b0 7d 13 00    	movl   $0x137db0,(%rsi)
 
+0000000000007c83 <Label_SearchInRootDirBegin>:
+
+Label_SearchInRootDirBegin:
+    /* 检查是否已搜索完所有根目录扇区 */
+    cmpw $0, RootDirSizeForLoop  # 比较剩余扇区数
+    7c83:	83 3e ae             	cmpl   $0xffffffae,(%rsi)
+    7c86:	7d 00                	jge    7c88 <Label_SearchInRootDirBegin+0x5>
+    jz Label_NoLoader  # 剩0 表示没找到
+    7c88:	74 49                	je     7cd3 <Label_NoLoader>
+    decw RootDirSizeForLoop  # RootDirSizeForLoop--
+    7c8a:	ff 0e                	decl   (%rsi)
+    7c8c:	ae                   	scas   %es:(%rdi),%al
+    7c8d:	7d b8                	jge    7c47 <Label_Start+0x6>
+    /* 设置读取扇区参数 */
+    movw $0, %ax
+    7c8f:	00 00                	add    %al,(%rax)
+    movw %ax, %es  # ES=0 缓冲区段地址
+    7c91:	8e c0                	mov    %eax,%es
+    movw $0x8000, %bx  # 缓冲区偏移地址
+    7c93:	bb 00 80 a1 b0       	mov    $0xb0a18000,%ebx
+    movw SectorNo, %ax  # 要读取的扇区号
+    7c98:	7d b1                	jge    7c4b <Label_Start+0xa>
+    movb $1, %cl        # CL=1 读取一个扇区
+    7c9a:	01 e8                	add    %ebp,%eax
+    # 在执行call命令时，IP寄存器已指向 下一条指令(mov $LoaderFileName, %si)位置 这叫返回地址
+    # 此时，先将SP-=2(栈向下增长，上面是代码)，再将IP的值存入[SS:SP]，返回地址就保存在栈中了，后面会有ret命令
+    # 之后，再将Func_ReadOneSector地址存入IP寄存器中，这样就能跳转到目标地址了
+    call Func_ReadOneSector
+    7c9c:	94                   	xchg   %eax,%esp
+    7c9d:	00 be e5 7d bf 00    	add    %bh,0xbf7de5(%rsi)
+    /* 设置文件名比较参数 */
+    movw $LoaderFileName, %si  # 通过DS:SI指向文件名源地址
+    movw $0x8000, %di  # ES:DI 指向扇区内容起始地址
+    7ca3:	80 fc ba             	cmp    $0xba,%ah
+    cld  # DF复位，这样通过LODSB从DS:SI加载内容到AL后，SI就会递增1
+    movw $16, %dx  # DX=16 一个扇区最多有 512B/32B=16 个目录项
+    7ca6:	10 00                	adc    %al,(%rax)
+
+0000000000007ca8 <Label_SearchForLoaderBin>:
+
+Label_SearchForLoaderBin:
+    cmpw $0, %dx  # 比较剩余目录项数
+    7ca8:	83 fa 00             	cmp    $0x0,%edx
+    jz Label_GotoNextSectorInRootDir  # 如果为0 跳到下一个扇区
+    7cab:	74 20                	je     7ccd <Label_GotoNextSectorInRootDir>
+    decw %dx  # 目录项数--
+    7cad:	4a                   	rex.WX
+    movw $11, %cx  # cs=11 文件名长度11字节
+    7cae:	b9                   	.byte 0xb9
+    7caf:	0b 00                	or     (%rax),%eax
+
+0000000000007cb1 <Label_CmpFileName>:
+
+Label_CmpFileName:
+    cmpw $0, %cx  # 检查是否比较完所有字符
+    7cb1:	83 f9 00             	cmp    $0x0,%ecx
+    jz Label_FileNameFound  # 如果全部匹配 跳转到对应逻辑
+    7cb4:	74 32                	je     7ce8 <Label_FileNameFound>
+    decw %cx  # 字符计数器--
+    7cb6:	49 ac                	rex.WB lods %ds:(%rsi),%al
+    lodsb  #  从DS:SI加载一个字节到AL，SI++
+    cmpb %al, %es:(%di)  # 比较AL和ES:DI指向的字节
+    7cb8:	26 38 05 74 02 eb 03 	es cmp %al,0x3eb0274(%rip)        # 3eb7f33 <__bss_start+0x3eaff33>
+
+0000000000007cbf <Label_GoOn>:
+    jz Label_GoOn  # 如果相等 继续比较下一个字符
+    jmp Label_Different  # 如果不相等 处理不匹配情况
+
+Label_GoOn:
+    incw %di  # DI指向下一个字符
+    7cbf:	47 eb ef             	rex.RXB jmp 7cb1 <Label_CmpFileName>
+
+0000000000007cc2 <Label_Different>:
+    jmp Label_CmpFileName  # 继续比较
+
+Label_Different:
+    andw $0xffe0, %di  # DI对齐到当前目录项开头
+    7cc2:	83 e7 e0             	and    $0xffffffe0,%edi
+    addw $0x20, %di  # DI指向下一个目录项 +32字节
+    7cc5:	83 c7 20             	add    $0x20,%edi
+    movw $LoaderFileName, %si  # SI重置到文件名开头
+    7cc8:	be e5 7d eb db       	mov    $0xdbeb7de5,%esi
+
+0000000000007ccd <Label_GotoNextSectorInRootDir>:
+    jmp Label_SearchForLoaderBin  # 继续在当前扇区搜索
+
+Label_GotoNextSectorInRootDir:
+    incw SectorNo  # 扇区++
+    7ccd:	ff 06                	incl   (%rsi)
+    7ccf:	b0 7d                	mov    $0x7d,%al
+    jmp Label_SearchInRootDirBegin  # 回到搜索循环开始
+    7cd1:	eb b0                	jmp    7c83 <Label_SearchInRootDirBegin>
+
+0000000000007cd3 <Label_NoLoader>:
+
+/* 显示未找到loader的错误消息 */
+Label_NoLoader:
+    movw $0x1301, %ax
+    7cd3:	b8 01 13 bb 8c       	mov    $0x8cbb1301,%eax
+    movw $0x008c, %bx
+    7cd8:	00 ba 00 01 bd ce    	add    %bh,-0x3142ff00(%rdx)
+    movw $0x0100, %dx
+    movw $NoLoaderMsg, %bp
+    7cde:	7d b9                	jge    7c99 <Label_SearchInRootDirBegin+0x16>
+    movw $NoLoaderMsgLen, %cx
+    7ce0:	17                   	(bad)
+    7ce1:	00 cd                	add    %cl,%ch
+    int $0x10
+    7ce3:	10                   	.byte 0x10
+
+0000000000007ce4 <halt>:
 halt:
-    cli       # 禁用中断
-    7c3c:	fa                   	cli
-    hlt       # 暂停CPU
-    7c3d:	f4                   	hlt
-    jmp halt  # 无限循环
-    7c3e:	eb fc                	jmp    7c3c <halt>
+    cli
+    7ce4:	fa                   	cli
+    hlt
+    7ce5:	f4                   	hlt
+    jmp halt
+    7ce6:	eb fc                	jmp    7ce4 <halt>
 
-00007c40 <StartBootMsg>:
-    7c40:	53                   	push   %ebx
-    7c41:	69 64 6e 65 79 20 44 	imul   $0x49442079,0x65(%esi,%ebp,2),%esp
-    7c48:	49 
-    7c49:	4e                   	dec    %esi
-    7c4a:	47                   	inc    %edi
-    7c4b:	2c 20                	sub    $0x20,%al
-    7c4d:	53                   	push   %ebx
-    7c4e:	74 61                	je     7cb1 <StartBootMsg+0x71>
-    7c50:	72 74                	jb     7cc6 <StartBootMsg+0x86>
-    7c52:	20 42 6f             	and    %al,0x6f(%edx)
-    7c55:	6f                   	outsl  %ds:(%esi),(%dx)
-    7c56:	74 2e                	je     7c86 <StartBootMsg+0x46>
-    7c58:	2e 2e 2e 2e 2e 00 00 	cs cs cs cs add %al,%cs:(%eax)
+0000000000007ce8 <Label_FileNameFound>:
+
+/* 找到loader的处理 */
+Label_FileNameFound:
+    movw $RootDirSectors, %ax  # AX=根目录扇区数
+    7ce8:	b8 0e 00 83 e7       	mov    $0xe783000e,%eax
+    andw $0xffe0, %di  # DI对齐到当前目录项开头
+    7ced:	e0 83                	loopne 7c72 <Label_Start+0x31>
+    addw $0x1a, %di  # DI指向目录项中的起始簇号字段 DIR_FstClus
+    7cef:	c7                   	(bad)
+    7cf0:	1a 26                	sbb    (%rsi),%ah
+    movw %es:(%di), %cx  # CX=文件的起始簇号 DIR_FstClus
+    7cf2:	8b 0d 51 01 c1 83    	mov    -0x7c3efeaf(%rip),%ecx        # ffffffff83c17e49 <__bss_start+0xffffffff83c0fe49>
+    pushw %cx  # 保存DIR_FstClus到栈中
+    /* 计算文件第一个簇的扇区号 */
+    addw %ax, %cx  # CX=文件起始簇号+根目录扇区数 = 文件第一个簇的扇区号
+    addw $SectorBalance, %cx  # CX += 17（FAT1 + FAT2 + 保留扇区 - 2(数据区从2开始)）
+    7cf8:	c1 11 b8             	rcll   $0xb8,(%rcx)
+    /* 设置加载地址 ES:BX=0x1000:0x0000 */
+    movw $BaseOfLoader, %ax  # AX=0x1000
+    7cfb:	00 10                	add    %dl,(%rax)
+    movw %ax, %es  # ES=0x1000 loader段地址
+    7cfd:	8e c0                	mov    %eax,%es
+    movw $OffsetOfLoader, %bx  # BX=0x0000 loader偏移地址
+    7cff:	bb 00 00 89 c8       	mov    $0xc8890000,%ebx
+
+0000000000007d04 <Label_GoOnLoadingFile>:
+    movw %cx, %ax  # AX=文件起始扇区号
+
+Label_GoOnLoadingFile:
+    pushw %ax  # 保存当前扇区号
+    7d04:	50                   	push   %rax
+    pushw %bx  # 保存当前内存偏移
+    7d05:	53                   	push   %rbx
+
+    /* 显示进度点 */
+    movb $0x0e, %ah  # AH=0Eh 电传打字机输出
+    7d06:	b4 0e                	mov    $0xe,%ah
+    movb $'.', %al  # AL='.' 要显示的字符
+    7d08:	b0 2e                	mov    $0x2e,%al
+    movb $0x0f, %bl  # BL=0Fh  属性：黑底白字
+    7d0a:	b3 0f                	mov    $0xf,%bl
+    int $0x10
+    7d0c:	cd 10                	int    $0x10
+
+    popw %bx
+    7d0e:	5b                   	pop    %rbx
+    popw %ax
+    7d0f:	58                   	pop    %rax
+
+    movb $1, %cl  # CL=1 读取1个扇区
+    7d10:	b1 01                	mov    $0x1,%cl
+    call Func_ReadOneSector  # 调用读扇区函数
+    7d12:	e8 1d 00 58 e8       	call   ffffffffe8587d34 <__bss_start+0xffffffffe857fd34>
+
+    popw %ax  # 弹出之前保存的簇号
+    call Func_GetFatEntry  # 获取下一个簇号 结果在AX
+    7d17:	49 00 3d ff 0f 74 0f 	rex.WB add %dil,0xf740fff(%rip)        # f748d1d <__bss_start+0xf740d1d>
+
+    cmpw $0x0fff, %ax  # 比较簇号与0FFFh（EOL标志）
+    jz Label_FileLoaded  # 如果是结束标记 跳转到加载完成
+
+    pushw %ax  # 保存下一个簇号
+    7d1e:	50                   	push   %rax
+    movw $RootDirSectors, %dx  # DX=根目录扇区数
+    7d1f:	ba 0e 00 01 d0       	mov    $0xd001000e,%edx
+    addw %dx, %ax  # AX+=根目录扇区数
+    addw $SectorBalance, %ax  # AX += 17 计算下一个簇的扇区号
+    7d24:	83 c0 11             	add    $0x11,%eax
+    addw BPB_BytesPerSec, %bx  # BX += 512 下一个内存位置
+    7d27:	03 1e                	add    (%rsi),%ebx
+    7d29:	0c 7c                	or     $0x7c,%al
+    jmp Label_GoOnLoadingFile  # 继续加载下一个簇
+    7d2b:	eb d7                	jmp    7d04 <Label_GoOnLoadingFile>
+
+0000000000007d2d <Label_FileLoaded>:
+
+Label_FileLoaded:
+    ljmp $BaseOfLoader, $OffsetOfLoader  # 长跳转到0x1000:0x0000 
+    7d2d:	ea                   	(bad)
+    7d2e:	00 00                	add    %al,(%rax)
+    7d30:	00 10                	add    %dl,(%rax)
+
+0000000000007d32 <Func_ReadOneSector>:
+
+/* 函数：读取一个扇区 */
+/* 参数：AX = 逻辑扇区号，ES:BX = 数据缓冲区，CL = 读取扇区数 */
+Func_ReadOneSector:
+    pushw %bp  # 将BP保存在栈SP-2位置，接着上面调用，实际上已经-4了 后面会有pop对应的
+    7d32:	55                   	push   %rbp
+    movw %sp, %bp  # 将当前的SP存在BP中，BP就是这个函数新的栈帧
+    7d33:	89 e5                	mov    %esp,%ebp
+
+    subw $2, %sp  # 在栈上分配2字节的空间，临时变量，这里申请，后面必须得释放 后面会有add对应的
+    7d35:	83 ec 02             	sub    $0x2,%esp
+    movb %cl, -2(%bp)  # 将参数 读取的扇区数 存入临时变量
+    7d38:	88 4e fe             	mov    %cl,-0x2(%rsi)
+
+    pushw %bx  # 将参数BX 数据缓冲区 保存到临时变量-4(%bp) 后面会有pop对应的
+    7d3b:	53                   	push   %rbx
+
+    # 将逻辑扇区号转换为柱面/磁头/扇区(CHS) 因为BIOS中断 int 13h, AH=02h 只能受理CHS
+    movb BPB_SecPerTrk, %bl  # BL = 每磁道扇区数
+    7d3c:	8a 1e                	mov    (%rsi),%bl
+    7d3e:	19 7c f6 f3          	sbb    %edi,-0xd(%rsi,%rsi,8)
+    divb %bl  # AX/BL=AL(磁道号)...AH(扇区号)
+    incb %ah  # 扇区号+1(BIOS从1开始计数)
+    7d42:	fe c4                	inc    %ah
+    movb %ah, %cl  # 扇区S暂存 CL中
+    7d44:	88 e1                	mov    %ah,%cl
+    movb %al, %dh  # 磁头H暂存 DL中
+    7d46:	88 c6                	mov    %al,%dh
+    andb $1, %dh  # 磁头要么0 要么1
+    7d48:	80 e6 01             	and    $0x1,%dh
+    shrb $1, %al   # AL >> 1
+    7d4b:	d0 e8                	shr    $1,%al
+    movb %al, %ch  # 柱面C暂存 CH中
+    7d4d:	88 c5                	mov    %al,%ch
+
+    popw %bx  # 恢复 BX
+    7d4f:	5b                   	pop    %rbx
+
+    movb BS_DrvNum, %dl  # DL = 驱动器号(0=软盘A)
+    7d50:	8a 16                	mov    (%rsi),%dl
+    7d52:	25                   	.byte 0x25
+    7d53:	7c                   	.byte 0x7c
+
+0000000000007d54 <Label_GoOnReading>:
+Label_GoOnReading:
+    movb $2, %ah       # AH=02h(读扇区)
+    7d54:	b4 02                	mov    $0x2,%ah
+    movb -2(%bp), %al  # AL = 要读取的扇区数
+    7d56:	8a 46 fe             	mov    -0x2(%rsi),%al
+    int $0x13         # 调用BIOS磁盘中断
+    7d59:	cd 13                	int    $0x13
+
+    jc Label_GoOnReading  # 如果出错(CF=1) 一直重试
+    7d5b:	72 f7                	jb     7d54 <Label_GoOnReading>
+
+    addw $2, %sp  # 释放局部变量空间
+    7d5d:	83 c4 02             	add    $0x2,%esp
+    popw %bp      # 恢复基址指针
+    7d60:	5d                   	pop    %rbp
+    ret          # 返回 对应着call
+    7d61:	c3                   	ret
+
+0000000000007d62 <Func_GetFatEntry>:
+
+/* 函数：获取FAT表项 */
+/* 参数：AX = 簇号，返回值：AX = 下一个簇号 */
+Func_GetFatEntry:
+    pushw %es
+    7d62:	06                   	(bad)
+    pushw %bx
+    7d63:	53                   	push   %rbx
+    pushw %ax
+    7d64:	50                   	push   %rax
+
+    movw $0, %ax
+    7d65:	b8 00 00 8e c0       	mov    $0xc08e0000,%eax
+    movw %ax, %es
+
+    popw %ax
+    7d6a:	58                   	pop    %rax
+
+    movb $0, Odd  # 初始化奇偶标志为0(偶数)
+    7d6b:	c6 06 b2             	movb   $0xb2,(%rsi)
+    7d6e:	7d 00                	jge    7d70 <Func_GetFatEntry+0xe>
+    /* 计算FAT表项在FAT中的字节偏移 */
+    movw $3, %bx
+    7d70:	bb 03 00 f7 e3       	mov    $0xe3f70003,%ebx
+    mulw %bx  # DX:AX = AX * 3(每个表项1.5字节)
+    movw $2, %bx
+    7d75:	bb 02 00 f7 f3       	mov    $0xf3f70002,%ebx
+    divw %bx  # DX:AX / 2 得到 AX=字节偏移 DX=余数
+
+    cmpw $0, %dx  # 检查余数
+    7d7a:	83 fa 00             	cmp    $0x0,%edx
+    jz Label_Even  # 余数为0 是偶数项
+    7d7d:	74 05                	je     7d84 <Label_Even>
+    movb $1, Odd  # 否则设置奇偶标志为1
+    7d7f:	c6 06 b2             	movb   $0xb2,(%rsi)
+    7d82:	7d 01                	jge    7d85 <Label_Even+0x1>
+
+0000000000007d84 <Label_Even>:
+Label_Even:
+    xorw %dx, %dx  # 清零DX(刚用于除法了)
+    7d84:	31 d2                	xor    %edx,%edx
+    movw BPB_BytesPerSec, %bx  # BX=每扇区字节数 512
+    7d86:	8b 1e                	mov    (%rsi),%ebx
+    7d88:	0c 7c                	or     $0x7c,%al
+    divw %bx  # DX:AX / BX 得到 AX=扇区号 DX=扇内偏移
+    7d8a:	f7 f3                	div    %ebx
+
+    pushw %dx
+    7d8c:	52                   	push   %rdx
+    movw $0x8000, %bx  # BX=0x8000 FAT缓存地址
+    7d8d:	bb 00 80 83 c0       	mov    $0xc0838000,%ebx
+    addw $SectorNumOfFAT1Start, %ax  # AX += FAT1起始扇区号
+    7d92:	01 b1 02 e8 9a ff    	add    %esi,-0x6517fe(%rcx)
+    movb $2, %cl  # CL = 2 读取两个扇区 以为你FAT表项可能跨扇区
+    call Func_ReadOneSector  # 读取包含FAT表项的扇区
+
+    popw %dx  # 恢复扇内偏移
+    7d98:	5a                   	pop    %rdx
+    addw %dx, %bx  # BX+=偏移 指向FAT表项
+    7d99:	01 d3                	add    %edx,%ebx
+    movw %es:(%bx), %ax  # AX=从FAT读取的16位值
+    7d9b:	26 8b 07             	es mov (%rdi),%eax
+
+    cmpb $1, Odd  # 检查是否位奇数项
+    7d9e:	80 3e b2             	cmpb   $0xb2,(%rsi)
+    7da1:	7d 01                	jge    7da4 <Label_Even+0x20>
+    jnz Label_Even2  # 如果不是 跳转
+    7da3:	75 03                	jne    7da8 <Label_Even2>
+    shrw $4, %ax  # 如果是奇数项 右移4位
+    7da5:	c1 e8 04             	shr    $0x4,%eax
+
+0000000000007da8 <Label_Even2>:
+Label_Even2:
+    andw $0x0fff, %ax  # 屏蔽高4位 保留低12位
+    7da8:	25 ff 0f 5b 07       	and    $0x75b0fff,%eax
+
+    popw %bx
+    popw %es
+    ret
+    7dad:	c3                   	ret
+
+0000000000007dae <RootDirSizeForLoop>:
+    7dae:	0e                   	(bad)
 	...
-    7dfb:	00 00                	add    %al,(%eax)
-    7dfd:	00 55 aa             	add    %dl,-0x56(%ebp)
+
+0000000000007db0 <SectorNo>:
+	...
+
+0000000000007db2 <Odd>:
+	...
+
+0000000000007db3 <StartBootMsg>:
+    7db3:	53                   	push   %rbx
+    7db4:	69 64 6e 65 79 20 44 	imul   $0x49442079,0x65(%rsi,%rbp,2),%esp
+    7dbb:	49 
+    7dbc:	4e                   	rex.WRX
+    7dbd:	47 2c 20             	rex.RXB sub $0x20,%al
+    7dc0:	53                   	push   %rbx
+    7dc1:	74 61                	je     7e24 <LoaderFileName+0x3f>
+    7dc3:	72 74                	jb     7e39 <LoaderFileName+0x54>
+    7dc5:	69 6e 67 20 42 6f 6f 	imul   $0x6f6f4220,0x67(%rsi),%ebp
+    7dcc:	74 21                	je     7def <LoaderFileName+0xa>
+
+0000000000007dce <NoLoaderMsg>:
+    7dce:	45 52                	rex.RB push %r10
+    7dd0:	52                   	push   %rdx
+    7dd1:	4f 52                	rex.WRXB push %r10
+    7dd3:	3a 20                	cmp    (%rax),%ah
+    7dd5:	4e 6f                	rex.WRX outsl %ds:(%rsi),(%dx)
+    7dd7:	20 4c 4f 41          	and    %cl,0x41(%rdi,%rcx,2)
+    7ddb:	44                   	rex.R
+    7ddc:	45 52                	rex.RB push %r10
+    7dde:	20 46 6f             	and    %al,0x6f(%rsi)
+    7de1:	75 6e                	jne    7e51 <LoaderFileName+0x6c>
+    7de3:	64                   	fs
+    7de4:	21                   	.byte 0x21
+
+0000000000007de5 <LoaderFileName>:
+    7de5:	4c                   	rex.WR
+    7de6:	4f                   	rex.WRXB
+    7de7:	41                   	rex.B
+    7de8:	44                   	rex.R
+    7de9:	45 52                	rex.RB push %r10
+    7deb:	20 20                	and    %ah,(%rax)
+    7ded:	42                   	rex.X
+    7dee:	49                   	rex.WB
+    7def:	4e 00 00             	rex.WRX add %r8b,(%rax)
+	...
+    7dfe:	55                   	push   %rbp
+    7dff:	aa                   	stos   %al,%es:(%rdi)

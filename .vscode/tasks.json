@@ -5,10 +5,10 @@
     "tasks": [
         {
             "label": "start qemu",
-            "type": "shell",
+            "type": "process",
             "command": "echo start qemu",
             "windows": {
-                "command": "${workspaceRoot}/script/qemu-win-debug.bat"
+                "command": "${workspaceRoot}/script/qemu-win-debug.bat",
             },
             "options": {
                 "cwd": "${workspaceRoot}/image/"
